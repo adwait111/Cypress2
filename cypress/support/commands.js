@@ -1,3 +1,4 @@
+import 'cypress-file-upload';
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -29,3 +30,8 @@ Cypress.Commands.add('formDetails',(fn,ln,em,msg) => {
     cy.get('input[name="email"]').type(em)
     cy.get('textarea[name="message"]').type(msg)
  })
+
+Cypress.Commands.add('getIframeBody',(id)=>{
+    return cy.get(`#${id}`)
+    .its('0.contentDocument.body').should('not.be.empty').then(cy.wrap)
+})
